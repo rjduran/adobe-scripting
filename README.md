@@ -4,7 +4,7 @@ This guide walks through the process of getting started writing scripts in Javas
 
 This tutorial was written for MacOS. There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScript Toolkit.app or 2) Use a text editor and custom workflow (ie. Atom). Both workflows are described below.
 
-Recommendation: I suggest starting with the standard **Extendscript Toolkit.app** to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow such as with Atom.
+Recommendation: I suggest starting with the standard **Extendscript Toolkit.app** to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom).
 
 ## Install and Setup Extendscript Toolkit CC
 
@@ -18,7 +18,7 @@ At this point you are ready to write scripts!
 
 ## Install and Setup Atom IDE Based Workflow
 
-1. Install Atom IDE
+1. Install [Atom IDE](http://atom.io/)
 1. Install [process-palette](https://atom.io/packages/process-palette) atom package.
 2. Add a new global command to the process-palette.json file by going to the package setup options and adding the following.
     * Give it a namespace of "ai"
