@@ -1,12 +1,29 @@
 # adobe-scripting
 
-This guide walks through the process of getting started writing scripts in Javascript for use in Adobe Illustrator CC (2017).
+This guide walks through the process of getting started writing scripts in Javascript for use in [Adobe Illustrator CC](https://www.adobe.com/products/illustrator.html).
 
-This tutorial was written for MacOS. There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScript Toolkit.app or 2) Use a text editor and custom workflow (ie. Atom). Both workflows are described below.
+This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10.12).
 
-Recommendation: I suggest starting with the standard **Extendscript Toolkit.app** to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom).
+## Table of Contents
 
-## Install and Setup Extendscript Toolkit CC
+* [Setup Development Environment](#setup-development-environment)
+    * [Install and Setup ExtendScript Toolkit CC](#install-and-setup-extendscript-toolkit-cc)
+    * [Install and Setup Atom IDE Based Workflow](#install-and-setup-atom-ide-based-workflow)
+* [Getting Started](#getting-started)
+    * [Introduction](#introduction)
+    * [Understanding the Adobe Documentation](#understanding-the-adobe-documentation)
+    * [Setup Development Environment](#setup-development-environment)
+    * [Understanding the Document](#understanding-the-document)
+    * [Preprocessor Directives](#preprocessor-directives)
+* [References](#references)
+
+## Setup Development Environment
+
+There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScript Toolkit.app or 2) Use a text editor and custom workflow (ie. Atom). Both workflows are described below.
+
+**Recommendation**: If you are new to scripting or coding in general, I suggest starting with the standard _Extendscript Toolkit.app_ to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom IDE).
+
+### Install and Setup Extendscript Toolkit CC
 
 1. Launch Adobe CC and look for "Extendscript Toolkit CC" in the list of available applications. If it isn't shown in the list goto Preferences > Creative Cloud > Check "Show Older Apps" to reveal it in the list of available applications. If needed, the direct download link can be found [here](https://helpx.adobe.com/creative-cloud/kb/creative-cloud-apps-download.html).
 2. Click Install
@@ -16,7 +33,7 @@ Recommendation: I suggest starting with the standard **Extendscript Toolkit.app*
 
 At this point you are ready to write scripts!
 
-## Install and Setup Atom IDE Based Workflow
+### Install and Setup Atom IDE Based Workflow
 
 1. Install [Atom IDE](http://atom.io/)
 1. Install [process-palette](https://atom.io/packages/process-palette) atom package.
@@ -30,25 +47,126 @@ At this point you are ready to write scripts!
 
 At this point you are ready to write scripts!
 
+
+## Getting Started
+
+### Introduction
+
+This guide is written with the intention of providing an entry point into learning how to write scripts for use in Adobe Illustrator CC. It assumes some experience with programming fundamentals and JavaScript. If you are familiar with a programming language such as python, C/C++, or Java it should be fairly straightforward to follow along.
+
+The content is oriented towards visual design and writing code that results in visual and graphical elements. If you are familiar with creative coding IDE's such as Processing or Open Frameworks, it should feel familiar in the iterative "write - run ... repeat" workflow, meaning you write some code, run it, see the result in Illustrator, and repeat the process. To facilitate this kind of workflow I recommend using Atom IDE as opposed to the ExtendScript Toolkit Application.
+
+### Understanding the Adobe Documentation
+
+There are several official Adobe documents that act as good references for learning scripting. I suggest reading through them in the following order to grasp fundamental concepts and to learn which references are relevant to the task at hand.
+
+* [Adobe Illustrator Scripting References](https://www.adobe.com/devnet/illustrator/scripting.html) - All Official Documentation (Login Required)
+* [Adobe Illustrator Scripting Guide](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/AI_ScriptGd_2017.pdf) - Read First
+    * Chapter 2: The Illustrator Scripting Object Model
+    * Chapter 3: Scripting Illustrator
+    * Chapter 5: Scripting with JavaScript
+* [Adobe Illustrator Scripting Reference: Javascript](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/Illustrator_JavaScript_Scripting_Reference_2017.pdf) - Reference as needed
+* JavaScript Tools Guide CC (PDF located under _Applications/ExtendScript Toolkit CC/SDK_) / [Online Version](http://estk.aenhancers.com/)
+    * Chapter 7: Integrating External Libraries
+
+### Setup Development Environment
+
+[Setup Atom](#install-and-setup-atom-ide-based-workflow) and make a new Illustrator document.
+
+* Setup Atom to be your primary editor. Trust me, it just works better.
+* Open Up Illustrator
+  * Create an Illustrator file with mm as the default units.
+      * New Document > Width: 100, Height: 100, Millimeters, RGB Color > Create
+  * Setup Grid & Rulers    
+      * Preferences > Guides & Grid > Gridline every: 1 mm, Subdivisions: 1
+      * Show Grid (View Menu or CMD + ')
+      * Show Ruler (View Menu > Rulers or CMD + r)
+* Open Up Atom
+  * Make a new directory called "scripts".
+  * Make a new file called "script.jsx" in your scripts folder. This and other scripts will be used for writing code and running from within Atom via the process-palette package you setup previously.
+
+At this point you should have an empty document in Illustrator with 1 empty layer and a project folder to store scripts in.
+    
+### Understanding the Document
+
+The most basic scripts consist of drawing paths (and shapes) on layers within a document. To do this there needs to be a reference to an active document and at least one layer within the document. The code below provides a boilerplate to get a reference to the active document and the first (and only) layer in the document.
+
+```
+// get the active document
+var doc = app.activeDocument;
+
+// get reference to layer 1
+var layer = doc.layers[0];
+```
+
+Any code entered in a script following these references will have access to the `doc` or `layer` objects.
+
+### Preprocessor Directives
+
+Preprocessor directives are a way to include external scripts. At a basic level, the first line of a script might have a directive as show below. This directive includes any code written in the file lib.js, bringing it into my script. Why use this? Over time your code might get complex, making it hard to read. Using additional files will allow you to modularize, simplify, reuse, and streamline your code. To learn more about their use look at the JavaScript Tools Guide (pdf) located under _Applications/ExtendScript Toolkit CC/SDK_.
+```
+#include "lib.js"
+```
+
+For the moment we won't worry about preprocessor directives. We will make use of them later in the guide.
+
+### Hello World
+
+The obligatory "Hello World".
+
+```
+// get the active document
+var doc = app.activeDocument;
+
+// get reference to layer 1
+var layer = doc.layers[0];
+
+// create new text frame and add it to the layer
+var text = layer.textFrames.add();
+
+// set position and contents of text frame
+text.position = [0,0];
+text.contents = "Hello World";
+
+```
+
+
+
+--
+
+More soon.
+
+
+
+
+
+
+
+---
+
 ## References
 
 Illustrator Scripting
 
-* [Adobe Illustrator CC 2017 Scripting](https://www.adobe.com/devnet/illustrator/scripting.html)
+* [Adobe Illustrator CC 2017 Scripting References](https://www.adobe.com/devnet/illustrator/scripting.html)
 * [Adobe Illustrator CC 2017 Scripting Guide](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/AI_ScriptGd_2017.pdf) (pdf)
     * Chapter 5: Scripting with JavaScript
 * [Adobe Illustrator CC 2017 Scripting Reference: Javascript](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/Illustrator_JavaScript_Scripting_Reference_2017.pdf) (pdf)
 * ExtendScript Toolkit ReadMe.pdf (Found under Applications/Adobe ExtendScript Toolkit CC)
 * Tutorials
-    * [scripting-for-illustrator-tutorial by jtnimoy](https://github.com/jtnimoy/scripting-for-illustrator-tutorial)
+    * [scripting-for-illustrator-tutorial](https://github.com/jtnimoy/scripting-for-illustrator-tutorial) by Josh Nimoy ([jtnimoy](https://github.com/jtnimoy))
     * [Use AppleScript to perform batch actions in Illustrator](https://gielberkers.com/use-applescript-batch-actions-illustrator/)
+* Tools
+    * [Adobe CC Scripts Panel](https://github.com/majman/adobe-scripts-panel)
 
 UI Scripting
 
-* [JavaScript Tools Guide CC](http://estk.aenhancers.com/) - A great reference on other topics such as UI Tools, Interapplication Communication, etc
+* JavaScript Tools Guide CC (Found under Applications/ExtendScript Toolkit CC/SDK)
+* [JavaScript Tools Guide (Online)](http://estk.aenhancers.com/) - A great reference on other topics such as UI Tools, Interapplication Communication, etc
 * [Jongware ScriptUI](http://jongware.mit.edu/scriptuihtml/Sui/index_1.html)
 * [Jongware Illustrator (CS6)](http://jongware.mit.edu/iljscs6html/iljscs6/)
 * [Peter Kahrel's ScriptUI for Dummies](http://www.kahrel.plus.com/indesign/scriptui.html)
+* ScriptUI Samples (Found under Applications/ExtendScript Toolkit CC/SDK/Samples)
 
 Atom IDE Based Workflow
 
@@ -60,7 +178,6 @@ Atom IDE Based Workflow
 * osascript
     * [osascript manual](https://ss64.com/osx/osascript.html)
     * [Run AppleScript from the Command Line in Mac OS X with osascript](http://osxdaily.com/2016/08/19/run-applescript-command-line-macos-osascript/)
-
 
 
 
