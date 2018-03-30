@@ -15,15 +15,19 @@ This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10
     * [Setup Development Environment](#setup-development-environment)
     * [Understanding the Document](#understanding-the-document)
     * [Preprocessor Directives](#preprocessor-directives)
+    * [Hello World](#hello-world)
+    <!-- * [Understanding Coordinates](#understanding-coordinates) -->
 * [References](#references)
 
 ## Setup Development Environment
 
 There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScript Toolkit.app or 2) Use a text editor and custom workflow (ie. Atom). Both workflows are described below.
 
-**Recommendation**: If you are new to scripting or coding in general, I suggest starting with the standard _Extendscript Toolkit.app_ to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom IDE).
+**Recommendation**: If you are new to scripting or coding in general, I suggest starting with the standard _Extendscript Toolkit.app_ to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom).
 
 ### Install and Setup Extendscript Toolkit CC
+
+![](img/extendscript-setup.png)
 
 1. Launch Adobe CC and look for "Extendscript Toolkit CC" in the list of available applications. If it isn't shown in the list goto Preferences > Creative Cloud > Check "Show Older Apps" to reveal it in the list of available applications. If needed, the direct download link can be found [here](https://helpx.adobe.com/creative-cloud/kb/creative-cloud-apps-download.html).
 2. Click Install
@@ -34,6 +38,8 @@ There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScri
 At this point you are ready to write scripts!
 
 ### Install and Setup Atom IDE Based Workflow
+
+![](img/atom-setup.png)
 
 1. Install [Atom IDE](http://atom.io/)
 1. Install [process-palette](https://atom.io/packages/process-palette) atom package.
@@ -71,7 +77,7 @@ There are several official Adobe documents that act as good references for learn
 
 ### Setup Development Environment
 
-[Setup Atom](#install-and-setup-atom-ide-based-workflow) and make a new Illustrator document.
+In general, you want to [Setup Atom](#install-and-setup-atom-ide-based-workflow) (one time) and make a new Illustrator document. It is possible to generate new documents using the `app.documents.add()` function. We will cover more of this method later.
 
 * Setup Atom to be your primary editor. Trust me, it just works better.
 * Open Up Illustrator
@@ -112,37 +118,32 @@ For the moment we won't worry about preprocessor directives. We will make use of
 
 ### Hello World
 
-The obligatory "Hello World".
+This example will insert the text "Hello World" at the position (0,0) in the artboard. The position that an object is inserted into the artboard is dependent on the artboard coordinates. When you make a new document using the Illustrator New Document window, the artboard will default to a position of (0,0). This is not always the case when _generating_ an artboard using a script. We will explore why this is next.
 
-```
-// get the active document
-var doc = app.activeDocument;
+1. Create an Illustrator file with mm as the default units. Set the document size to 100 mm x 100 mm and RGB Color. As mentioned previously, its really nice to be able to see the grid while learning about positioning and inserting objects to the artboard. Setup the grid by going to Preferences > Guides & Grid > Gridline every: 1 mm, Subdivisions: 1.
 
-// get reference to layer 1
-var layer = doc.layers[0];
+2. Create a script called hello-world.jsx and insert the following code.
 
-// create new text frame and add it to the layer
-var text = layer.textFrames.add();
+    ```
+    // get the active document
+    var doc = app.activeDocument;
 
-// set position and contents of text frame
-text.position = [0,0];
-text.contents = "Hello World";
+    // get reference to layer 1
+    var layer = doc.layers[0];
 
-```
+    // create new text frame and add it to the layer
+    var text = layer.textFrames.add();
 
+    // set position and contents of text frame
+    text.position = [0,0];
+    text.contents = "Hello World";
+    ```
 
+3. Run the code using Process Palette to see the result in Illustrator. The text was placed in the top left corner at (0,0).
 
---
-
-More soon.
-
-
-
+![](img/01-hello-world.png)
 
 
-
-
----
 
 ## References
 
@@ -153,6 +154,8 @@ Illustrator Scripting
     * Chapter 5: Scripting with JavaScript
 * [Adobe Illustrator CC 2017 Scripting Reference: Javascript](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/Illustrator_JavaScript_Scripting_Reference_2017.pdf) (pdf)
 * ExtendScript Toolkit ReadMe.pdf (Found under Applications/Adobe ExtendScript Toolkit CC)
+* Sample Code
+    * Found under Applications/Adobe Illustrator CC/Scripting/Sample Scripts/JavaScript
 * Tutorials
     * [scripting-for-illustrator-tutorial](https://github.com/jtnimoy/scripting-for-illustrator-tutorial) by Josh Nimoy ([jtnimoy](https://github.com/jtnimoy))
     * [Use AppleScript to perform batch actions in Illustrator](https://gielberkers.com/use-applescript-batch-actions-illustrator/)
@@ -166,7 +169,8 @@ UI Scripting
 * [Jongware ScriptUI](http://jongware.mit.edu/scriptuihtml/Sui/index_1.html)
 * [Jongware Illustrator (CS6)](http://jongware.mit.edu/iljscs6html/iljscs6/)
 * [Peter Kahrel's ScriptUI for Dummies](http://www.kahrel.plus.com/indesign/scriptui.html)
-* ScriptUI Samples (Found under Applications/ExtendScript Toolkit CC/SDK/Samples)
+* Sample Code
+    * ScriptUI Samples (Found under Applications/ExtendScript Toolkit CC/SDK/Samples)
 
 Atom IDE Based Workflow
 

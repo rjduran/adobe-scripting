@@ -9,4 +9,4 @@ var text = layer.textFrames.add();
 
 // set position and contents of text frame
 text.position = [0,0];
-text.contents = "Hello World";
+text.contents = "Hello World";  
