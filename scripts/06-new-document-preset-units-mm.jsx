@@ -31,3 +31,4 @@ var doc = app.documents.addDocument(preset, docPreset, false);
 doc.rulerOrigin = [0,height];
 
 // insert drawing code here
+// the document is setup with origin (0,00 in the top left corner. Note: Positioning in the y direction is negative (ie -y).

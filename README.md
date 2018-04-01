@@ -25,6 +25,8 @@ There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScri
 
 **Recommendation**: If you are new to scripting or coding in general, I suggest starting with the standard _Extendscript Toolkit.app_ to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom).
 
+Pro Tip: As you become experienced you may find that its beneficial to use both IDEs at times since (in my opinion) Atom is much nicer to look at and use and ExtendScript Toolkit has a built in Data Browser for learning the API and a JavaScript Console for debugging.
+
 ### Install and Setup Extendscript Toolkit CC
 
 ![](img/extendscript-setup.png)
@@ -143,7 +145,14 @@ This example will insert the text "Hello World" at the position (0,0) in the art
 
 ![](img/01-hello-world.png)
 
+<!-- ### Understanding Coordinates
 
+More soon... -->
+
+
+
+
+--
 
 ## References
 
@@ -154,6 +163,8 @@ Illustrator Scripting
     * Chapter 5: Scripting with JavaScript
 * [Adobe Illustrator CC 2017 Scripting Reference: Javascript](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/Illustrator_JavaScript_Scripting_Reference_2017.pdf) (pdf)
 * ExtendScript Toolkit ReadMe.pdf (Found under Applications/Adobe ExtendScript Toolkit CC)
+* [Adobe Illustrator Scripting Forum](https://forums.adobe.com/community/illustrator/illustrator_scripting)
+* [Illustrator Object Model](http://cssdk.s3-website-us-east-1.amazonaws.com/sdk/1.0/docs/WebHelp/app_notes/AI_obj_model.htm) aka DOM
 * Sample Code
     * Found under Applications/Adobe Illustrator CC/Scripting/Sample Scripts/JavaScript
 * Tutorials
