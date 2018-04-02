@@ -16,7 +16,7 @@ This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10
     * [Understanding the Document](#understanding-the-document)
     * [Preprocessor Directives](#preprocessor-directives)
     * [Hello World](#hello-world)
-    <!-- * [Understanding Coordinates](#understanding-coordinates) -->
+    * [Debugging](#debugging)
 * [References](#references)
 
 ## Setup Development Environment
@@ -99,7 +99,7 @@ At this point you should have an empty document in Illustrator with 1 empty laye
 
 The most basic scripts consist of drawing paths (and shapes) on layers within a document. To do this there needs to be a reference to an active document and at least one layer within the document. The code below provides a boilerplate to get a reference to the active document and the first (and only) layer in the document.
 
-```
+```javascript
 // get the active document
 var doc = app.activeDocument;
 
@@ -112,7 +112,7 @@ Any code entered in a script following these references will have access to the 
 ### Preprocessor Directives
 
 Preprocessor directives are a way to include external scripts. At a basic level, the first line of a script might have a directive as show below. This directive includes any code written in the file lib.js, bringing it into my script. Why use this? Over time your code might get complex, making it hard to read. Using additional files will allow you to modularize, simplify, reuse, and streamline your code. To learn more about their use look at the JavaScript Tools Guide (pdf) located under _Applications/ExtendScript Toolkit CC/SDK_.
-```
+```javascript
 #include "lib.js"
 ```
 
@@ -126,7 +126,7 @@ This example will insert the text "Hello World" at the position (0,0) in the art
 
 2. Create a script called hello-world.jsx and insert the following code.
 
-    ```
+    ```javascript
     // get the active document
     var doc = app.activeDocument;
 
@@ -136,23 +136,29 @@ This example will insert the text "Hello World" at the position (0,0) in the art
     // create new text frame and add it to the layer
     var text = layer.textFrames.add();
 
-    // set position and contents of text frame
-    text.position = [0,0];
+    // contents and position of text frame    
     text.contents = "Hello World";
+    text.position = [0,0];
     ```
 
 3. Run the code using Process Palette to see the result in Illustrator. The text was placed in the top left corner at (0,0).
 
 ![](img/01-hello-world.png)
 
-<!-- ### Understanding Coordinates
+### Debugging
 
-More soon... -->
+The `$.writeln()` function - This is similar to `println()` in Processing or `console.log()` in standard JavaScript and be really useful for debugging. The only caveat is it only works in the ExtendScript Toolkit IDE and will print to the JavaScript Console within the IDE. I have not found a solution for printing debug messages to the console in Atom yet.
+```javascript
+$.writeln("Foo Goo!");
+```
+
+Data Browser - This window within the ExtendScript Toolkit IDE is shows the namespace and all the objects, variables, and methods available. It is only available within the ExtendScript Toolkit IDE and only updates when running a script. In general the typical use case involves a document and/or layer so I usually start off inspecting an active document using the following script.
+```javascript
+var doc = app.activeDocument;
+var layer = doc.layers[0];
+```
 
 
-
-
---
 
 ## References
 
@@ -165,6 +171,7 @@ Illustrator Scripting
 * ExtendScript Toolkit ReadMe.pdf (Found under Applications/Adobe ExtendScript Toolkit CC)
 * [Adobe Illustrator Scripting Forum](https://forums.adobe.com/community/illustrator/illustrator_scripting)
 * [Illustrator Object Model](http://cssdk.s3-website-us-east-1.amazonaws.com/sdk/1.0/docs/WebHelp/app_notes/AI_obj_model.htm) aka DOM
+* [Graphic Design Stack Exchange](https://graphicdesign.stackexchange.com/tags/illustrator-scripting/hot)
 * Sample Code
     * Found under Applications/Adobe Illustrator CC/Scripting/Sample Scripts/JavaScript
 * Tutorials

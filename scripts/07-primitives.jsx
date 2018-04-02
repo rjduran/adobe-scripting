@@ -35,3 +35,39 @@ roundRect.stroked = false;
 var ellipse = layer.pathItems.ellipse(-y, x+20, w, h);
 ellipse.fillColor = makeColorRGB(0, 255, 0);
 ellipse.stroked = false;
+
+// draw line
+var p = layer.pathItems.add();
+var lineList = new Array([10, -20],[20, -20]);
+p.setEntirePath(lineList);
+p.filled = false;
+p.strokeWidth = 1;
+p.strokeColor = makeColorRGB(0,0,255);
+  
+// draw closed path
+var p = layer.pathItems.add();
+var lineList = [
+  [30, -20],
+  [50, -30],
+  [40, -15]
+];
+p.setEntirePath(lineList);
+p.closed = true;
+p.filled = false;
+p.strokeCap = StrokeCap.ROUNDENDCAP;
+p.strokeJoin = StrokeJoin.ROUNDENDJOIN;
+p.strokeWidth = 2;
+
+// draw closed path
+var p = layer.pathItems.add();
+var lineList = [
+  [30, -20],
+  [50, -30],
+  [40, -15]
+];
+p.setEntirePath(lineList);
+p.closed = true;
+p.filled = false;
+p.strokeCap = StrokeCap.ROUNDENDCAP;
+p.strokeJoin = StrokeJoin.ROUNDENDJOIN;
+p.strokeWidth = 2;
