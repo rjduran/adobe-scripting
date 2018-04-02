@@ -57,17 +57,3 @@ p.filled = false;
 p.strokeCap = StrokeCap.ROUNDENDCAP;
 p.strokeJoin = StrokeJoin.ROUNDENDJOIN;
 p.strokeWidth = 2;
-
-// draw closed path
-var p = layer.pathItems.add();
-var lineList = [
-  [30, -20],
-  [50, -30],
-  [40, -15]
-];
-p.setEntirePath(lineList);
-p.closed = true;
-p.filled = false;
-p.strokeCap = StrokeCap.ROUNDENDCAP;
-p.strokeJoin = StrokeJoin.ROUNDENDJOIN;
-p.strokeWidth = 2;
