@@ -1,7 +1,7 @@
 #include "../lib/units.js"
 #include "../lib/doc.js"
 
-// make new doc in mm
+// make new doc in pts (default)
 var doc = makeDocument(100, 100);
 
 // make new doc in mm

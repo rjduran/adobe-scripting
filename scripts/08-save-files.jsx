@@ -1,6 +1,6 @@
 #include "../lib/color.js"
 #include "../lib/files.js"
-#include "../lib/utils.js"
+//#include "../lib/utils.js"
 
 // define the document width (in points)
 var width = 100;
