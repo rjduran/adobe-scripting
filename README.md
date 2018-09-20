@@ -9,6 +9,7 @@ This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10
 * [Setup Development Environment](#setup-development-environment)
     * [Install and Setup ExtendScript Toolkit CC](#install-and-setup-extendscript-toolkit-cc)
     * [Install and Setup Atom IDE Based Workflow](#install-and-setup-atom-ide-based-workflow)
+    * [Install and Setup VSCode IDE Based Workflow](#install-and-setup-vscode-ide-based-workflow)
 * [Getting Started](#getting-started)
     * [Introduction](#introduction)
     * [Understanding the Adobe Documentation](#understanding-the-adobe-documentation)
@@ -18,7 +19,7 @@ This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10
     * [Hello World](#hello-world)
     * [Debugging](#debugging)
 * [Examples](#examples)
-    * [Hello World](#hello-world)
+    * [Hello World](#hello-world-1)
     * [New Document](#new-document)
     * [New Document RGB](#new-document-rgb)
     * [New Document Set Origin](#new-document-set-origin)
@@ -35,9 +36,9 @@ This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10
 
 There are two ways to write scripts for Adobe Illustrator: 1) Use the ExtendScript Toolkit.app or 2) Use a text editor and custom workflow (ie. Atom). Both workflows are described below.
 
-**Recommendation**: If you are new to scripting or coding in general, I suggest starting with the standard _Extendscript Toolkit.app_ to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom).
+**Recommendation**: If you are new to scripting or coding in general, I suggest starting with the standard _Extendscript Toolkit.app_ to get familiar with the language, syntax, and DOM before moving onto a different editor and workflow (ie. Atom or VSCode).
 
-Pro Tip: As you become experienced you may find that its beneficial to use both IDEs at times since (in my opinion) Atom is much nicer to look at and use and ExtendScript Toolkit has a built in Data Browser for learning the API and a JavaScript Console for debugging.
+Pro Tip: As you become experienced you may find that its beneficial to use both IDEs at times since (in my opinion) Atom (or VSCode) is much nicer to look at / use and ExtendScript Toolkit has a built in Data Browser for learning the API and a JavaScript Console for debugging.
 
 ### Install and Setup Extendscript Toolkit CC
 
@@ -49,9 +50,11 @@ Pro Tip: As you become experienced you may find that its beneficial to use both 
 4. Set the Target application to "Adobe Illustrator CC 2017". If Illustrator is not open, open it and click the small broken red "chain link" icon in the scripting application to change it green and connect to Illustrator. If Illustrator closes the chain link icon will change back to a broken red link.
 5. (Optional) The default settings are much to small for a Macbook Pro with Retina Screen on the highest resolution setting. Change the font to 'Consolas' or 'Monaco' and font size to '16'.
 
-At this point you are ready to write scripts!
+At this point you are ready to write scripts! Keep reading for alternative workflows with Atom or VSCode text editors. Both are free and open source and provide many built in features and packages to customize your workflow.
 
 ### Install and Setup Atom IDE Based Workflow
+
+#### Atom Using Process Palette
 
 ![](img/atom-setup.png)
 
@@ -65,7 +68,42 @@ At this point you are ready to write scripts!
 3. Load a new .jsx file and run it via "cmd + ctrl + r" or by right clicking on the file in the sidebar and choosing "Run With" > Run Current Script.
 4. Make sure Adobe Illustrator is open and you should see the results when running the script.
 
-At this point you are ready to write scripts!
+#### Atom Using Adobe Script Runner (Updated!)
+
+As of September 2018, I have shifted the workflow to using [Adobe Script Runner](https://atom.io/packages/adobe-script-runner). Good news! There is a version for both Atom and VSCode (keep reading). It essentially replaces the Process Palette workflow above (Yay!). Which means it works with any kind of file/folder path including spaces or not. By default, it contains a key command setup for After Effects so you will need to do the following to setup a key command for Illustrator.
+
+1. Enable keybindings in the package settings.
+2. Open up Atom > Keymap. The file keymap.cson will open in the editor.
+3. Add the following key binding for Adobe Illustrator. This one replaces the default AE keybinding. If you want to keep it, just use a different keybinding.
+
+    ```
+    '.platform-darwin atom-workspace':
+      'alt-cmd-r': 'adobe-script-runner:Adobe Illustrator'
+    ```
+4. Now you can run scripts with the specified key command as before. If you don't have Illustrator open it will automatically launch it.
+
+
+### Install and Setup VSCode IDE Based Workflow
+
+![](img/vscode-setup.png)
+
+1. Install [VSCode IDE](https://code.visualstudio.com/)
+2. Install [Adobe Script Runner](https://marketplace.visualstudio.com/items?itemName=renderTom.adobe-script-runner) and [ExtendScript Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=hennamann.jsx). This second extension will ensure syntax highlighting and that you don't get unnecessary errors when running a .jsx file.
+3. Load a new .jsx file and run it via "cmd + shift + p" and selecting Adobe Illustrator. Similarily you could run other Adobe applications the same way.
+4. If you would like to customize the key command to be the same as Atom or different than the default, follow the remaining steps.
+5. Goto Code > Preferences > Keyboard Shortcuts
+6. Search for adobeScriptRunner.ai and add a new key command to this by editing the keybindings.json file or clicking on the pencil next to the item. Add the following keybinding for Adobe Illustrator:
+
+    ```
+    {
+      "key": "ctrl+cmd+r",
+      "command": "adobeScriptRunner.ai",
+      "when": "editorTextFocus"
+    }
+    ```
+    
+7. Run using the new key command and you should see the results in Illustrator.
+
 
 
 ## Getting Started
@@ -648,6 +686,18 @@ ellipse.fillColor = makeColorRGB(0, 255, 0);
 ellipse.stroked = false;
 ```
 
+### Future Examples
+
+* Text
+* Groups
+* Iteration
+* Shape Grids
+* Line Grids
+* Text Types
+* Working with Data
+
+And more!
+
 ## References
 
 ### Illustrator Scripting
@@ -657,6 +707,7 @@ ellipse.stroked = false;
     * Chapter 5: Scripting with JavaScript
 * [Adobe Illustrator CC 2017 Scripting Reference: Javascript](https://wwwimages2.adobe.com/content/dam/acom/en/devnet/illustrator/pdf/Illustrator_JavaScript_Scripting_Reference_2017.pdf) (pdf)
 * ExtendScript Toolkit ReadMe.pdf (Found under Applications/Adobe ExtendScript Toolkit CC)
+* [Illustrator Scripting Guide](http://ai.aenhancers.com/) by aenhancers
 * [Adobe Illustrator Scripting Forum](https://forums.adobe.com/community/illustrator/illustrator_scripting)
 * [Illustrator Object Model](http://cssdk.s3-website-us-east-1.amazonaws.com/sdk/1.0/docs/WebHelp/app_notes/AI_obj_model.htm) aka DOM
 * [Graphic Design Stack Exchange](https://graphicdesign.stackexchange.com/tags/illustrator-scripting/hot)
