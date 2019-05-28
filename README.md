@@ -31,6 +31,7 @@ This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10
     * [Preprocessor Directives](#preprocessor-directives)
     * [Layers](#layers)   
 * [References](#references)
+* [Donate](#donate)
 
 ## Setup Development Environment
 
@@ -722,6 +723,7 @@ And more!
 ### ExtendScript
 
 * [ExtendScript References And Links](https://github.com/ExtendScript/wiki/wiki/References-And-Links) - Useful resources for scripting
+* [ExtendScript Wiki](https://github.com/ExtendScript/wiki/wiki)
 * [Documentation for the ExtendScript API by Yearbook](https://github.com/yearbook/extendscript-api-documentation) - Great alternative for building your own reference documentation from the ExtendScript API.
 
 ### UI Scripting
@@ -745,12 +747,9 @@ And more!
     * [osascript manual](https://ss64.com/osx/osascript.html)
     * [Run AppleScript from the Command Line in Mac OS X with osascript](http://osxdaily.com/2016/08/19/run-applescript-command-line-macos-osascript/)
 
+## Donate
 
-
-
-
-
-
+If you find this tutorial useful in your work, please consider donating via [PayPal](https://www.paypal.me/rjduran/5usd). I'd love to put more time and energy into developing acessible content such as this. Thx for reading! 🙂
 
 
 
