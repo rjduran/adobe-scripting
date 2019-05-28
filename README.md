@@ -128,6 +128,8 @@ There are several official Adobe documents that act as good references for learn
 * JavaScript Tools Guide CC (PDF located under _Applications/ExtendScript Toolkit CC/SDK_) / [Online Version](http://estk.aenhancers.com/)
     * Chapter 7: Integrating External Libraries
 
+A searchable and more accessible HTML Version of the **Document Object Model** can be found here [Adobe Illustrator Type Library](https://www.indesignjs.de/extendscriptAPI/illustrator-latest/#about.html). For older versions check 
+
 If you are interested in a more modern approach to working with the documentation and have some experience working with [Node.js](http://nodejs.org/), check out the [Documentation for the ExtendScript API by Yearbook](https://github.com/yearbook/extendscript-api-documentation). It's a great alternative for building your own searchable reference documentation from the ExtendScript API.
 
 ### Setup Development Environment
@@ -724,6 +726,7 @@ And more!
 
 * [ExtendScript References And Links](https://github.com/ExtendScript/wiki/wiki/References-And-Links) - Useful resources for scripting
 * [ExtendScript Wiki](https://github.com/ExtendScript/wiki/wiki)
+* [Adobe Illustrator Type Library](https://www.indesignjs.de/extendscriptAPI/illustrator-latest/#about.html)
 * [Documentation for the ExtendScript API by Yearbook](https://github.com/yearbook/extendscript-api-documentation) - Great alternative for building your own reference documentation from the ExtendScript API.
 
 ### UI Scripting
